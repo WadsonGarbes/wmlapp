@@ -19,30 +19,7 @@ import re
 @app.route('/index')
 def index():
     
-    arquivo = pd.read_csv('/home/wadson/wmlapp/app/static/data/data.csv')
-    
-    X = arquivo.drop('drop', axis=1)
-    Y = arquivo['drop']
-    
-    x_train, x_test, y_train, y_test = train_test_split(X, Y,
-                                                        test_size=0.30, 
-                                                        random_state=1)
-                                                        
-    logmodel = LogisticRegression()
-    
-    logmodel.fit(x_train, y_train)
-    
-    pred_probs = logmodel.predict_proba(arquivo.drop('drop', axis=1))
-    
-    prob1 = pred_probs[:, 1]
-    prob2 = pred_probs[:, 0]
-    
-    prob1 = list(prob1)
-    
-    return render_template('index.html',
-                            title='index',
-                            prob1=prob1,
-                            prob2=prob2)
+    return render_template('index.html', title='index')
                             
 @app.route('/evadir')
 def evadir():
@@ -67,6 +44,8 @@ def evadir():
     prob = list(prob)
     
     prob = str(prob)
+    
+    prob = prob[1:-1]
     
     return prob
     
@@ -94,6 +73,8 @@ def permanecer():
     
     prob = str(prob)
     
+    prob = prob[1:-1]
+    
     return prob
                             
 @app.route('/evadir/<int:num>')
@@ -118,7 +99,7 @@ def evadir_num(num):
     
     prob = list(prob)
     
-    prob = str(prob[num])
+    prob = str(prob[num]) + "\n"
     
     return prob
     
@@ -144,6 +125,6 @@ def permanecer_num(num):
     
     prob = list(prob)
     
-    prob = str(prob[num])
+    prob = str(prob[num]) + "\n"
     
     return prob

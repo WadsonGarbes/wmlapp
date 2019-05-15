@@ -2,7 +2,6 @@
 
 from flask import Flask, url_for, render_template
 
-
 from app import app
 
 import numpy as np
@@ -12,8 +11,6 @@ import seaborn as sns
 
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
-
-import re
 
 @app.route('/')
 @app.route('/index')

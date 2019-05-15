@@ -46,21 +46,25 @@ Responsável por isolar nossa aplicação da máquina "hospedeira", garantido um
 $ git clone https://github.com/wadsongarbes/wmlapp wmlapp
 ```
 
+cria e ativa um ambiente virtual
+
 ```
 $ virtualenv venv && . venv/bin/activate
 ```
-cria e ativa um ambiente virtual
+
+baixa as dependências do projeto
 
 ```
 $ pip install -r requirements.txt
 ```
-baixa as dependências do projeto
 
 Exporte a variável necessária para o flask
 
 ```
 (venv) $ export FLASK_APP=run.py
 ```
+
+Roda o projeto
 
 ```
 (venv) $ flask run
@@ -69,10 +73,17 @@ Exporte a variável necessária para o flask
 Acesse o link disponibilizado pelo servidor (http://127.0.0.1:5000) em seu navegador de preferência
 
 Caso o comando acima não funcione, tente, no diretório wmlapp:
+## Rotas
 
-```
-(venv) $ python3 run.py
-```
+Além da opção de extrair todos os dados de uma vez, é possível extrair os dados um por um!
+basta ir até uma dessas urls e passar o id da pessoa do dataset!
+
+exemplo:
+
+http://127.0.0.1:5000/evadir/90 - retorna apenas a chance da pessoa cujo id é 90 de evadir
+
+http://127.0.0.1:5000/permanecer/80 - retorna apenas a chance da pessoa cujo id é 80 de permanecer
+
 
 ## Cansei!
 
@@ -89,4 +100,8 @@ No shell onde o servidor está rodando, tecle `ctrl + c` e desative o ambiente v
 Pergunte qualquer coisa na seção "Issue". Em caso de erros, poste o motivo e o log para uma melhor resposta!
 
 * [Dúvidas](https://github.com/WadsonGarbes/FingerInspector/issues)
+
+## Funcionalidades adicionais
+
+* Este código é livre para ser distribuído, utilizado e modificado!
 

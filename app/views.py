@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask, url_for, render_template
+from flask import Flask, url_for, render_template, send_file
 
 from app import app
 
@@ -17,7 +17,12 @@ from sklearn.linear_model import LogisticRegression
 def index():
     
     return render_template('index.html', title='index')
-                            
+    
+
+@app.route('/info')
+def info():
+    return render_template('data.html')
+    
 @app.route('/evadir')
 def evadir():
     

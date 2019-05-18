@@ -23,7 +23,7 @@ def info():
 @app.route('/evadir')
 def evadir():
 
-    arquivo = pd.read_csv('/home/wadson/wmlapp/app/static/data/data.csv')
+    arquivo = pd.read_csv('/home/WadsonGarbes/wmlapp/app/static/data/data.csv')
 
     X = arquivo.drop('drop', axis=1)
     Y = arquivo['drop']
@@ -51,7 +51,7 @@ def evadir():
 @app.route('/permanecer')
 def permanecer():
 
-    arquivo = pd.read_csv('/home/wadson/wmlapp/app/static/data/data.csv')
+    arquivo = pd.read_csv('/home/WadsonGarbes/wmlapp/app/static/data/data.csv')
 
     X = arquivo.drop('drop', axis=1)
     Y = arquivo['drop']
@@ -78,52 +78,63 @@ def permanecer():
 
 @app.route('/evadir/<int:num>')
 def evadir_num(num):
+    try:
 
-    arquivo = pd.read_csv('/home/wadson/wmlapp/app/static/data/data.csv')
+        arquivo = pd.read_csv('/home/WadsonGarbes/wmlapp/app/static/data/data.csv')
 
-    X = arquivo.drop('drop', axis=1)
-    Y = arquivo['drop']
+        X = arquivo.drop('drop', axis=1)
+        Y = arquivo['drop']
 
-    x_train, x_test, y_train, y_test = train_test_split(X, Y,
-                                                        test_size=0.30,
-                                                        random_state=1)
+        x_train, x_test, y_train, y_test = train_test_split(X, Y,
+                                                            test_size=0.30,
+                                                            random_state=1)
 
-    logmodel = LogisticRegression()
+        logmodel = LogisticRegression()
 
-    logmodel.fit(x_train, y_train)
+        logmodel.fit(x_train, y_train)
 
-    pred_probs = logmodel.predict_proba(arquivo.drop('drop', axis=1))
+        pred_probs = logmodel.predict_proba(arquivo.drop('drop', axis=1))
 
-    prob = pred_probs[:, 1]
+        prob = pred_probs[:, 1]
 
-    prob = list(prob)
+        prob = list(prob)
 
-    prob = str(prob[num]) + "\n"
+        prob = str(prob[num]) + "\n"
 
-    return prob
+        return prob
+
+    except IndexError:
+
+        return """list index out of range - from 0 to 400 only!\n"""
 
 @app.route('/permanecer/<int:num>')
 def permanecer_num(num):
 
-    arquivo = pd.read_csv('/home/wadson/wmlapp/app/static/data/data.csv')
+    try:
 
-    X = arquivo.drop('drop', axis=1)
-    Y = arquivo['drop']
+        arquivo = pd.read_csv('/home/WadsonGarbes/wmlapp/app/static/data/data.csv')
 
-    x_train, x_test, y_train, y_test = train_test_split(X, Y,
-                                                        test_size=0.30,
-                                                        random_state=1)
+        X = arquivo.drop('drop', axis=1)
+        Y = arquivo['drop']
 
-    logmodel = LogisticRegression()
+        x_train, x_test, y_train, y_test = train_test_split(X, Y,
+                                                            test_size=0.30,
+                                                            random_state=1)
 
-    logmodel.fit(x_train, y_train)
+        logmodel = LogisticRegression()
 
-    pred_probs = logmodel.predict_proba(arquivo.drop('drop', axis=1))
+        logmodel.fit(x_train, y_train)
 
-    prob = pred_probs[:, 0]
+        pred_probs = logmodel.predict_proba(arquivo.drop('drop', axis=1))
 
-    prob = list(prob)
+        prob = pred_probs[:, 0]
 
-    prob = str(prob[num]) + "\n"
+        prob = list(prob)
 
-    return prob
+        prob = str(prob[num]) + "\n"
+
+        return prob
+
+    except IndexError:
+
+        return """list index out of range - from 0 to 400 only!\n"""

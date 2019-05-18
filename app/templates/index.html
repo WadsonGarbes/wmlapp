@@ -1,61 +1,140 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
 
-    <title>WMLAPP</title>
+html,
+body {
+  height: 100%;
+}
 
-    <meta name="description" content="Source code generated using layoutit.com">
-    <meta name="author" content="LayoutIt!">
+div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+  background: #eee;
+}
 
-    <link href="static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="static/css/style.css" rel="stylesheet">
+.effect1 {
+  color: #222;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-size: 24px;
+  position: relative;
+  padding: 10px 50px 10px 20px;
 
-  </head>
-  <body>
+  -webkit-transition: all 0.3s;
 
-    <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-5">
-			<div class="jumbotron">
-				<h2>
-					Chances de evadir ?
-				</h2>
-				<p>
-					Listar todos no botão abaixo!<br>
-					Procura alguém em específico ?
-					use a seguinte URL: /evadir/id
-				</p>
-				<p>
-					<a class="btn btn-danger btn-large" href="/evadir">Listar</a>
-				</p>
-			</div>
-		</div>
-		<div class="col-md-2">
-			<img src="{{url_for('static', filename="img/if.png")}}" alt="IF" style="width:250px;height:250px;">
-		</div>
-		<div class="col-md-5">
-			<div class="jumbotron">
-				<h2>
-					Chances de permanecer ?
-				</h2>
-				<p>
-					Listar todos no botão abaixo!<br>
-					Procura alguém em específico ?
-					use a seguinte URL: /permanecer/id
-				</p>
-				<p>
-					<a class="btn btn-success btn-large" href="/permanecer">Listar</a>
-				</p>
-			</div>
-		</div>
-	</div>
+  -o-transition: all 0.3s;
+
+  transition: all 0.3s;
+
+  -webkit-transform: scale(3);
+
+      -ms-transform: scale(3);
+
+          transform: scale(3); /*change scale(3) to scale(1)*/
+}
+
+
+.effect1 .bg {
+  background: #222;
+  width: 30px;
+  height: 2px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -1px;
+  z-index: -1;
+
+  -webkit-transition: all 0.3s;
+
+  -o-transition: all 0.3s;
+
+  transition: all 0.3s;
+}
+
+.effect1:hover {
+  padding-right: 20px;
+  color: #fff;
+}
+
+.effect1:hover .bg {
+  height: 100%;
+  width: 100%;
+  -webkit-transform: translate(0, -50%);
+      -ms-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+}
+
+.effect1 .bg:before, .effect1 .bg:after {
+  content: '';
+  height: 2px;
+  width: 10px;
+  background: #222;
+  position: absolute;
+  right: -2px;      
+  -webkit-transition: all 0.3s;      
+  -o-transition: all 0.3s;      
+  transition: all 0.3s;
+}
+
+.effect1 .bg:before {
+  bottom: 3px;
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+.effect1 .bg:after{
+  top: 3px;
+  -webkit-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+.effect1:hover .bg:before,
+.effect1:hover .bg:after{
+  right: 0;
+}
+
+.effect1:hover .bg:before{
+  bottom: 6px;
+}
+
+.effect1:hover .bg:after{
+  top: 6px;
+}
+</style>
+
+<div style="background: #af0e0e; opacity: 0.9;">
+  <a class="effect1" href="{{ url_for('evadir') }}">
+    Evadiram
+    <span class="bg"></span>
+  </a>
 </div>
 
-    <script src="static/js/jquery.min.js"></script>
-    <script src="static/js/bootstrap.min.js"></script>
-    <script src="static/js/scripts.js"></script>
-  </body>
-</html>
+<div style="background: #0e6d27; opacity: 0.9;">
+  <a class="effect1" href="{{ url_for('permanecer') }}">
+    Não Evadiram
+    <span class="bg"></span>
+  </a>
+</div>
+
+<div style="background: #0d71af; opacity: 0.9;">
+  <a class="effect1" href="{{ url_for('info') }}">
+    + Info
+    <span class="bg"></span>
+  </a>
+</div>
+
+<!--
+The size of the button is scaled 3x using css. You can reduce it to 1x. See the CSS.
+-->

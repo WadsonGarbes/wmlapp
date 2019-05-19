@@ -85,6 +85,9 @@ http://127.0.0.1:5000/evadir/90 - retorna apenas a chance da pessoa cujo id é 9
 
 http://127.0.0.1:5000/permanecer/80 - retorna apenas a chance da pessoa cujo id é 80 de permanecer
 
+## Exemplo de uso (usando curl)
+
+![Screenshot](curl.png)
 
 ## Cansei!
 
